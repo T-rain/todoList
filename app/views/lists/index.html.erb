@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>TodoList</title>
+	</head>
+	<body>
+		<h1>TodoList</h1>
+		
+		<%= form_tag(add_lists_path, :method=>"post") do %>
+			<div class="addbar">
+				<%= text_field_tag(:todo_text) %>
+  				<%= submit_tag("Add todo") %>
+			</div>
+
+		<% end %>
+			
+
+
+		<% @list.each do |list| %>
+
+		  	<div id="list">
+		  		<div class="div-a"><p><%= list.description%></p></div>
+		  		<div class="div-b"><%= button_to 'Edit', edit_list_path(list),method:"get"%></div>
+		  		<div class="div-c"><%= button_to 'Delete', list_path(list), method:"delete", data: { confirm: 'Delete?' } %></div>
+  				
+			</div>
+
+
+		<% end %>
+
+		
+	</body>
+</html>
