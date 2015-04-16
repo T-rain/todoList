@@ -7,6 +7,15 @@
 	<body>
 		<h1>TodoList</h1>
 		
+		<%= form_tag(lists_path, :method =>'get') do %>
+			<div class = "todobar">
+				<%= submit_tag("all") %>
+				<%= submit_tag("finish") %>
+				<%= submit_tag("unfinish") %>
+			</div>
+  			
+		<% end %>
+
 		<%= form_tag(add_lists_path, :method=>"post") do %>
 			<div class="addbar">
 				<%= text_field_tag(:todo_text) %>
@@ -20,9 +29,11 @@
 		<% @list.each do |list| %>
 
 		  	<div id="list">
-		  		<div class="div-a"><p><%= list.description%></p></div>
+		  		<div class="div-a"><p><%= list.description%>,Done?<%= list.state%> </p></div>
 		  		<div class="div-b"><%= button_to 'Edit', edit_list_path(list),method:"get"%></div>
 		  		<div class="div-c"><%= button_to 'Delete', list_path(list), method:"delete", data: { confirm: 'Delete?' } %></div>
+		  		<div class="div-d"><%= button_to 'Finish', finish_list_path(list),method:"get"%></div>
+		  		<div class="div-d"><%= button_to 'Unfinish', unfinish_list_path(list),method:"get"%></div>
   				
 			</div>
 

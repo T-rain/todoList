@@ -1,13 +1,23 @@
 class ListsController < ApplicationController
-	before_action :find_list,:only =>[:update,:edit,:destroy]
+	before_action :find_list,:only =>[:update,:edit,:destroy,:finish,:unfinish]
 
 	def index
 		@list = List.all
-		@todo = List.new
+
+		if params[:commit] == "finish"
+			@list = @list.where("state like ?",true)
+		elsif params[:commit] == "unfinish"
+			@list = @list.where("state like ?",false)
+		end
+
+
+
+
 	end
 
 	def add
-   		List.create(:description => params[:todo_text])
+   		@list = List.create(:description => params[:todo_text])
+   		@list.save
    		redirect_to lists_path
 	end
 
@@ -28,6 +38,22 @@ class ListsController < ApplicationController
 			redirect_to lists_path
 		end
 	end
+
+	def finish
+		@list.state = true
+		@list.save
+		redirect_to lists_path
+	end
+
+	def unfinish
+		@list.state = false
+		@list.save
+		redirect_to lists_path
+	end
+
+	def showfinish
+	end
+
 
 	private
 
