@@ -5,9 +5,9 @@ class ListsController < ApplicationController
 		@list = List.all
 
 		if params[:commit] == "finish"
-			@list = @list.where("state like ?",true)
+			@list = @list.where("dostate like ?","YES")
 		elsif params[:commit] == "unfinish"
-			@list = @list.where("state like ?",false)
+			@list = @list.where("dostate like ?","NO")
 		end
 
 
@@ -40,13 +40,13 @@ class ListsController < ApplicationController
 	end
 
 	def finish
-		@list.state = true
+		@list.dostate = "YES"
 		@list.save
 		redirect_to lists_path
 	end
 
 	def unfinish
-		@list.state = false
+		@list.dostate = "NO"
 		@list.save
 		redirect_to lists_path
 	end

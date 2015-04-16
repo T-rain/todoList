@@ -29,7 +29,7 @@
 		<% @list.each do |list| %>
 
 		  	<div id="list">
-		  		<div class="div-a"><p><%= list.description%>,Done?<%= list.state%> </p></div>
+		  		<div class="div-a"><p><%= list.description%>,Done?<%= list.dostate%> </p></div>
 		  		<div class="div-b"><%= button_to 'Edit', edit_list_path(list),method:"get"%></div>
 		  		<div class="div-c"><%= button_to 'Delete', list_path(list), method:"delete", data: { confirm: 'Delete?' } %></div>
 		  		<div class="div-d"><%= button_to 'Finish', finish_list_path(list),method:"get"%></div>

@@ -6623,3 +6623,220 @@ Processing by ListsController#index as HTML
   [1m[36mList Load (3.1ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
   Rendered lists/index.html.erb within layouts/application (10.6ms)
 Completed 200 OK in 38ms (Views: 34.3ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/lists?utf8=%E2%9C%93&commit=unfinish" for 127.0.0.1 at 2015-04-16 23:27:19 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ListsController#index as HTML
+  Parameters: {"utf8"=>"✓", "commit"=>"unfinish"}
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists" WHERE (state like 'false')
+  Rendered lists/index.html.erb within layouts/application (27.8ms)
+Completed 200 OK in 271ms (Views: 266.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-16 23:27:23 +0800
+Processing by ListsController#index as HTML
+  [1m[36mList Load (3.6ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+  Rendered lists/index.html.erb within layouts/application (16.9ms)
+Completed 200 OK in 57ms (Views: 51.7ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/lists?utf8=%E2%9C%93&commit=finish" for 127.0.0.1 at 2015-04-16 23:27:24 +0800
+Processing by ListsController#index as HTML
+  Parameters: {"utf8"=>"✓", "commit"=>"finish"}
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists" WHERE (state like 'true')
+  Rendered lists/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 43ms (Views: 42.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/lists?utf8=%E2%9C%93&commit=unfinish" for 127.0.0.1 at 2015-04-16 23:27:25 +0800
+Processing by ListsController#index as HTML
+  Parameters: {"utf8"=>"✓", "commit"=>"unfinish"}
+  [1m[36mList Load (1.2ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE (state like 'false')[0m
+  Rendered lists/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 48ms (Views: 45.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/lists?utf8=%E2%9C%93&commit=finish" for 127.0.0.1 at 2015-04-16 23:27:26 +0800
+Processing by ListsController#index as HTML
+  Parameters: {"utf8"=>"✓", "commit"=>"finish"}
+  [1m[35mList Load (0.1ms)[0m  SELECT "lists".* FROM "lists" WHERE (state like 'true')
+  Rendered lists/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 43ms (Views: 42.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/lists?utf8=%E2%9C%93&commit=all" for 127.0.0.1 at 2015-04-16 23:27:27 +0800
+Processing by ListsController#index as HTML
+  Parameters: {"utf8"=>"✓", "commit"=>"all"}
+  [1m[36mList Load (4.6ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+  Rendered lists/index.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 54ms (Views: 48.7ms | ActiveRecord: 4.6ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to FixStatetype (20150416153119)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (4.5ms)[0m  [1mCREATE TEMPORARY TABLE "alists" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "state" boolean DEFAULT 'f') [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "lists"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "alists" ("id","description","created_at","updated_at","state") VALUES (1, 'do homework', '2015-04-15 16:46:52.224183', '2015-04-16 12:24:13.046626', 't')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "alists" ("id","description","created_at","updated_at","state") VALUES (2, 'drink water', '2015-04-15 17:09:12.099581', '2015-04-16 12:24:17.604441', 'f')
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "alists" ("id","description","created_at","updated_at","state") VALUES (10, 'eat food', '2015-04-16 12:23:10.262869', '2015-04-16 12:24:16.296524', 't')[0m
+  [1m[35m (2.5ms)[0m  DROP TABLE "lists"
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "lists" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "alists"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "lists" ("id","description","created_at","updated_at") VALUES (1, 'do homework', '2015-04-15 16:46:52.224183', '2015-04-16 12:24:13.046626')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "lists" ("id","description","created_at","updated_at") VALUES (2, 'drink water', '2015-04-15 17:09:12.099581', '2015-04-16 12:24:17.604441')
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "lists" ("id","description","created_at","updated_at") VALUES (10, 'eat food', '2015-04-16 12:23:10.262869', '2015-04-16 12:24:16.296524')[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "alists"
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "lists" ADD "dostate" varchar DEFAULT 'NO'[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150416153119"]]
+  [1m[36m (12.5ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-16 23:38:05 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ListsController#index as HTML
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists"
+  Rendered lists/index.html.erb within layouts/application (56.4ms)
+Completed 500 Internal Server Error in 77ms
+
+ActionView::Template::Error (undefined method `state' for #<List:0x00000002bab7e0>):
+    29: 		<% @list.each do |list| %>
+    30: 
+    31: 		  	<div id="list">
+    32: 		  		<div class="div-a"><p><%= list.description%>,Done?<%= list.state%> </p></div>
+    33: 		  		<div class="div-b"><%= button_to 'Edit', edit_list_path(list),method:"get"%></div>
+    34: 		  		<div class="div-c"><%= button_to 'Delete', list_path(list), method:"delete", data: { confirm: 'Delete?' } %></div>
+    35: 		  		<div class="div-d"><%= button_to 'Finish', finish_list_path(list),method:"get"%></div>
+  app/views/lists/index.html.erb:32:in `block in _app_views_lists_index_html_erb__283772228476940634_31789260'
+  app/views/lists/index.html.erb:29:in `_app_views_lists_index_html_erb__283772228476940634_31789260'
+
+
+  Rendered /home/t-rain/.rvm/gems/ruby-2.1.5/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.6ms)
+  Rendered /home/t-rain/.rvm/gems/ruby-2.1.5/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered /home/t-rain/.rvm/gems/ruby-2.1.5/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.2ms)
+  Rendered /home/t-rain/.rvm/gems/ruby-2.1.5/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (27.0ms)
+  Rendered /home/t-rain/.rvm/gems/ruby-2.1.5/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /home/t-rain/.rvm/gems/ruby-2.1.5/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.9ms)
+  Rendered /home/t-rain/.rvm/gems/ruby-2.1.5/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.8ms)
+  Rendered /home/t-rain/.rvm/gems/ruby-2.1.5/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (3.6ms)
+  Rendered /home/t-rain/.rvm/gems/ruby-2.1.5/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (26.9ms)
+  Rendered /home/t-rain/.rvm/gems/ruby-2.1.5/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/t-rain/.rvm/gems/ruby-2.1.5/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/t-rain/.rvm/gems/ruby-2.1.5/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (59.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-16 23:38:32 +0800
+Processing by ListsController#index as HTML
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+  Rendered lists/index.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 296ms (Views: 295.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/lists/1/finish" for 127.0.0.1 at 2015-04-16 23:38:35 +0800
+Processing by ListsController#finish as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mList Load (0.2ms)[0m  SELECT  "lists".* FROM "lists" WHERE "lists"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (1.3ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "lists" SET "dostate" = ?, "updated_at" = ? WHERE "lists"."id" = ?  [["dostate", "YES"], ["updated_at", "2015-04-16 15:38:35.965023"], ["id", 1]]
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/lists
+Completed 302 Found in 41ms (ActiveRecord: 4.3ms)
+
+
+Started GET "/lists" for 127.0.0.1 at 2015-04-16 23:38:35 +0800
+Processing by ListsController#index as HTML
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists"
+  Rendered lists/index.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 31ms (Views: 30.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/lists/1/unfinish" for 127.0.0.1 at 2015-04-16 23:38:37 +0800
+Processing by ListsController#unfinish as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mList Load (0.1ms)[0m  [1mSELECT  "lists".* FROM "lists" WHERE "lists"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (1.3ms)[0m  [1mUPDATE "lists" SET "dostate" = ?, "updated_at" = ? WHERE "lists"."id" = ?[0m  [["dostate", "NO"], ["updated_at", "2015-04-16 15:38:37.246877"], ["id", 1]]
+  [1m[35m (1.5ms)[0m  commit transaction
+Redirected to http://localhost:3000/lists
+Completed 302 Found in 9ms (ActiveRecord: 2.9ms)
+
+
+Started GET "/lists" for 127.0.0.1 at 2015-04-16 23:38:37 +0800
+Processing by ListsController#index as HTML
+  [1m[36mList Load (0.6ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+  Rendered lists/index.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 21ms (Views: 20.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/lists?utf8=%E2%9C%93&commit=finish" for 127.0.0.1 at 2015-04-16 23:38:38 +0800
+Processing by ListsController#index as HTML
+  Parameters: {"utf8"=>"✓", "commit"=>"finish"}
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists" WHERE (dostate like 'YES')
+  Rendered lists/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 44ms (Views: 41.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/lists?utf8=%E2%9C%93&commit=unfinish" for 127.0.0.1 at 2015-04-16 23:38:40 +0800
+Processing by ListsController#index as HTML
+  Parameters: {"utf8"=>"✓", "commit"=>"unfinish"}
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE (dostate like 'NO')[0m
+  Rendered lists/index.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 55ms (Views: 52.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/lists?utf8=%E2%9C%93&commit=finish" for 127.0.0.1 at 2015-04-16 23:38:41 +0800
+Processing by ListsController#index as HTML
+  Parameters: {"utf8"=>"✓", "commit"=>"finish"}
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists" WHERE (dostate like 'YES')
+  Rendered lists/index.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 49ms (Views: 48.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/lists?utf8=%E2%9C%93&commit=all" for 127.0.0.1 at 2015-04-16 23:38:42 +0800
+Processing by ListsController#index as HTML
+  Parameters: {"utf8"=>"✓", "commit"=>"all"}
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+  Rendered lists/index.html.erb within layouts/application (9.7ms)
+Completed 200 OK in 43ms (Views: 42.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/lists/1/finish" for 127.0.0.1 at 2015-04-16 23:38:44 +0800
+Processing by ListsController#finish as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mList Load (0.1ms)[0m  SELECT  "lists".* FROM "lists" WHERE "lists"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.8ms)[0m  UPDATE "lists" SET "dostate" = ?, "updated_at" = ? WHERE "lists"."id" = ?  [["dostate", "YES"], ["updated_at", "2015-04-16 15:38:44.101782"], ["id", 1]]
+  [1m[36m (4.3ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/lists
+Completed 302 Found in 12ms (ActiveRecord: 6.2ms)
+
+
+Started GET "/lists" for 127.0.0.1 at 2015-04-16 23:38:44 +0800
+Processing by ListsController#index as HTML
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists"
+  Rendered lists/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 32ms (Views: 31.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/lists?utf8=%E2%9C%93&commit=unfinish" for 127.0.0.1 at 2015-04-16 23:38:45 +0800
+Processing by ListsController#index as HTML
+  Parameters: {"utf8"=>"✓", "commit"=>"unfinish"}
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists" WHERE (dostate like 'NO')[0m
+  Rendered lists/index.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 53ms (Views: 52.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/lists?utf8=%E2%9C%93&commit=finish" for 127.0.0.1 at 2015-04-16 23:38:46 +0800
+Processing by ListsController#index as HTML
+  Parameters: {"utf8"=>"✓", "commit"=>"finish"}
+  [1m[35mList Load (0.2ms)[0m  SELECT "lists".* FROM "lists" WHERE (dostate like 'YES')
+  Rendered lists/index.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 40ms (Views: 39.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/lists?utf8=%E2%9C%93&commit=all" for 127.0.0.1 at 2015-04-16 23:38:47 +0800
+Processing by ListsController#index as HTML
+  Parameters: {"utf8"=>"✓", "commit"=>"all"}
+  [1m[36mList Load (0.2ms)[0m  [1mSELECT "lists".* FROM "lists"[0m
+  Rendered lists/index.html.erb within layouts/application (12.3ms)
+Completed 200 OK in 58ms (Views: 57.5ms | ActiveRecord: 0.2ms)
